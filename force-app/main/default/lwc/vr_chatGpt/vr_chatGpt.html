@@ -1,0 +1,46 @@
+<template>
+    <template if:true={showSpinner}>
+        <lightning-spinner variant="brand" size="large"></lightning-spinner>
+    </template>
+    <div class="slds-var-m-around_large vr-background_white">
+        <div class="slds-var-p-around_medium">
+            <lightning-layout multiple-rows="false">
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="12">
+                    <div class="slds-var-p-around_small">
+                        <div class="slds-var-p-top_small">
+                            <lightning-input data-id="prompt" label="Enter a query"></lightning-input>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="12">
+                    <div class="slds-var-p-around_small">
+                        <div class="slds-var-p-top_small">
+                            <lightning-button variant="destructive" onclick={handleSubmit} label="Query Images"></lightning-button>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <template if:true={imagesReturned}>
+            <div class="slds-var-p-around_medium">
+                <lightning-layout multiple-rows="false">
+                    <lightning-layout-item size="12" small-device-size="12" medium-device-size="12">
+                        <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">Basic Carousel
+                            <lightning-carousel>
+                                <template for:each={searchedImages} for:item="data">
+                                    <lightning-carousel-image key={data.url}
+                                        src ={data.url}
+                                        header = "First Card"
+                                        description = "First card description."
+                                        alternative-text = "First card accessible description."
+                                        href = "javascript:void(0);">
+                                    </lightning-carousel-image>
+                                </template>
+                            </lightning-carousel>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>
+    </div>
+</template>
